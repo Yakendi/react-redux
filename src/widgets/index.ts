@@ -1,0 +1,1 @@
+export { ProductCardWidget } from "./ProductCardWidget";
