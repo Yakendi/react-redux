@@ -1,8 +1,10 @@
 import SApp from "../assets/styles/app.styles";
+import { ProductsPage } from "../pages";
+
 function App() {
   return (
     <SApp>
-      <h1>App</h1>
+      <ProductsPage />
     </SApp>
   );
 }
