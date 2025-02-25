@@ -1,0 +1,1 @@
+export { default as ProductCardEntity } from "./ui/ProductCardEntity";
