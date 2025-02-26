@@ -1,14 +1,11 @@
 import styled from "styled-components";
 
-const SProductCardWidget = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+const SProductCardWidget = styled.ul`
+    width: 100%;
+    max-width: 1080px;
+    min-width: 600px;
+    padding: 40px 20px;
+    margin: 0 auto;
 `
 
 export default SProductCardWidget;

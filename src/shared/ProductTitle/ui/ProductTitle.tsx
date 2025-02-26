@@ -1,9 +1,13 @@
 import SProductTitle from "./styles/SProductTitle.styled";
 
-const ProductTitle = () => {
+interface ProductTitleInterface {    
+    title: string;
+}
+
+const ProductTitle = ({ title }: ProductTitleInterface) => {
     return (
         <SProductTitle>
-            ProductTitle
+            { title }
         </SProductTitle>
     );
 };

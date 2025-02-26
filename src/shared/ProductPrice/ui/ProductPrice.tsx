@@ -1,8 +1,14 @@
 import SProductPrice from "./styles/SProductPrice.styled"
 
-const ProductPrice = () => {
+interface ProductPriceInterface {
+    price: string;
+}
+
+const ProductPrice = ({ price }: ProductPriceInterface) => {
     return (
-        <SProductPrice />
+        <SProductPrice> 
+            { price } 
+        </SProductPrice>
     )
 };
 

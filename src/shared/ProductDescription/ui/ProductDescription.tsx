@@ -1,9 +1,13 @@
 import SProductDescription from "./styles/SProductDescription.styled";
 
-const ProductDescription = () => {
+interface ProductDescriptionInterface {
+    description: string;
+}
+
+const ProductDescription = ({ description }: ProductDescriptionInterface) => {
     return (
         <SProductDescription>
-            ProductDescription
+            { description }
         </SProductDescription>
     );
 };

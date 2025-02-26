@@ -10,9 +10,4 @@ export default createGlobalStyle`
         box-sizing: border-box;
         font-family: 'Lexend', sans-serif;
     }
-
-    h1 {
-        font-family: 'Lexend', sans-serif;
-        font-size: 30px;
-    }
 `;

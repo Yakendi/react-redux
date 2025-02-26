@@ -1,8 +1,12 @@
 import SProductImage from "./styles/SProductImage.styled"
 
-const ProductImage = () => {
+interface ProductImageInterface {
+    src: string;
+    alt: string;
+}
+const ProductImage = ({ src, alt }: ProductImageInterface) => {
     return (
-        <SProductImage />
+        <SProductImage src={src} alt={alt}/>
     );
 }
 
