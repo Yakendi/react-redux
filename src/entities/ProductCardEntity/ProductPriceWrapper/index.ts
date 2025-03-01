@@ -1,0 +1,1 @@
+export { default as ProductPriceWrapper } from "./ui/ProductPriceWrapper";

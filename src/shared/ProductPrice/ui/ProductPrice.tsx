@@ -1,6 +1,6 @@
 import SProductPrice from "./styles/SProductPrice.styled"
 
-interface ProductPriceInterface {
+export interface ProductPriceInterface {
     price: string;
 }
 

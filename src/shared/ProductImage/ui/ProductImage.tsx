@@ -1,6 +1,6 @@
 import SProductImage from "./styles/SProductImage.styled"
 
-interface ProductImageInterface {
+export interface ProductImageInterface {
     src: string;
     alt: string;
 }

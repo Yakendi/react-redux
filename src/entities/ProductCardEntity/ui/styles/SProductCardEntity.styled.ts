@@ -4,9 +4,9 @@ const SProductCardEntity = styled.li`
     position: relative;
     width: 100%;
     padding: 20px;
-    list-style: none;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    column-gap: 20px;
 
     :after {
     content: "";

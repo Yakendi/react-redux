@@ -1,0 +1,1 @@
+export { default as ProductInfoWrapper} from "./ui/ProductInfoWrapper";

@@ -1,6 +1,6 @@
 import SProductTitle from "./styles/SProductTitle.styled";
 
-interface ProductTitleInterface {    
+export interface ProductTitleInterface {    
     title: string;
 }
 
