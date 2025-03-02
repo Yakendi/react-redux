@@ -1,22 +1,16 @@
 import SProductCardWidget from "./styles/SProductCardWidget.styled";
 import { ProductCardEntity } from "../../../entities";
-import getProducts from "../../../services/getProducts";
-
-import { ProductModel } from "../../../entities/ProductCardEntity/model/ProductModel";
-import { useEffect, useState } from "react";
+import useProducts from "../../../shared/lib/hooks/useProducts.hook";
+import { ErrorContainer } from "../../../entities/ErrorContainerEntity";
 
 const ProductCardWidget = () => {
-    const [products, setProducts] = useState<ProductModel[] | null>(null);
+    const { products, error } = useProducts();
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            const data = await getProducts();
-            setProducts(data);
-        };
-        fetchProduct();
-    }, []);
-
-    if (!products) return <div>Загрузка...</div>;
+    if (error) {
+        return (
+            <ErrorContainer errorText={error} />
+        )
+    }
 
     return (
         <SProductCardWidget>
