@@ -6,22 +6,23 @@ import { ProductModel } from "../../../entities/ProductCardEntity/model/ProductM
 import { useEffect, useState } from "react";
 
 const ProductCardWidget = () => {
-    const [product, setProduct] = useState<ProductModel | null>(null);
+    const [products, setProducts] = useState<ProductModel[] | null>(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
             const data = await getProducts();
-            setProduct(data);
+            setProducts(data);
         };
         fetchProduct();
     }, []);
 
-    if (!product) return <div>Загрузка...</div>;
+    if (!products) return <div>Загрузка...</div>;
 
     return (
         <SProductCardWidget>
-            <ProductCardEntity product={product}/>
-            <ProductCardEntity product={product} />
+            {products.map((product) => (
+                <ProductCardEntity key={product.id} product={product} />
+            ))}
         </SProductCardWidget>
     );
 };

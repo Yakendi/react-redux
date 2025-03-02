@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 const SProductImageWrapper = styled.div`
-    max-width: 180px;
-`
+  flex: 0 0 180px;
+  height: 180px;
+`;
 
 export default SProductImageWrapper;

@@ -5,7 +5,7 @@ const SProductCardEntity = styled.li`
     width: 100%;
     padding: 20px;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     column-gap: 20px;
 
     :after {
