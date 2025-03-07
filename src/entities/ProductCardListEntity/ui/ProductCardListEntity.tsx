@@ -1,17 +1,17 @@
-import { ProductImageWrapper } from "../../ProductImageWrapper";
+import SProductCardListEntity from "./styles/SProductCardListEntity.styled";
+import { ProductImageWrapper } from "../../ProductImageWrapper"
 import { ProductInfoWrapper } from "../../ProductInfoWrapper";
 import { ProductPriceWrapper } from "../../ProductPriceWrapper";
-import SProductCard from "./styles/SProductCardEntity.styled"
 import { ProductCardInterface } from "../../../model/ProductModel";
 
-const ProductCardEntity = ({ product }: ProductCardInterface) => {
+const ProductCardListEntity = ({ product }: ProductCardInterface) => {
     return (
-        <SProductCard>
+        <SProductCardListEntity>
             <ProductImageWrapper src={product.image} alt={product.title}/>
             <ProductInfoWrapper title={product.title} description={product.description}/>
             <ProductPriceWrapper price={product.price}/>
-        </SProductCard>
-    )
-}
+        </SProductCardListEntity>
+    );
+};
 
-export default ProductCardEntity;
+export default ProductCardListEntity;

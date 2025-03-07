@@ -1,10 +1,11 @@
 import axios from "axios";
+import { ProductModel } from "../model/ProductModel";
 
-const BASE_URL = 'https://fakestoreapi.com/products';
+export const BASE_URL = 'https://fakestoreapi.com/products';
 
 const getProducts = async () => {
     try {
-        const response = await axios.get(BASE_URL);
+        const response = await axios.get<ProductModel[]>(BASE_URL);
         return response.data;
     } catch (error) {
         if (axios.isAxiosError(error)) {

@@ -1,1 +1,1 @@
-export { ProductCardEntity } from "./ProductCardEntity";
+export { ProductCardListEntity } from "./ProductCardListEntity";

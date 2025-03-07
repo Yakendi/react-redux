@@ -1,4 +1,4 @@
-import { ProductDescription, ProductTitle } from "../../../../shared";
+import { ProductDescription, ProductTitle } from "../../../shared";
 import SProductInfo from "./styles/SProductInfo.styled";
 
 interface ProductInfoWrapperInterface {

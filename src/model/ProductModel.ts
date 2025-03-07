@@ -5,3 +5,7 @@ export interface ProductModel {
     description: string;
     image: string;
 };
+
+export interface ProductCardInterface {
+    product: ProductModel
+};

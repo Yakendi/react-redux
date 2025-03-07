@@ -1,6 +1,6 @@
-import { ProductPrice } from "../../../../shared"
+import { ProductPrice } from "../../../shared"
 import SProductPriceWrapper from "./styles/SProductPriceWrapper.styled"
-import { ProductPriceInterface } from "../../../../shared/ProductPrice/ui/ProductPrice"
+import { ProductPriceInterface } from "../../../shared/ProductPrice/ui/ProductPrice"
 
 
 const ProductPriceWrapper = ({ price }: ProductPriceInterface) => {
