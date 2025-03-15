@@ -1,26 +1,17 @@
-import { useState, useEffect } from "react";
-import { ProductModel } from "../../../model/ProductModel"
-import getProducts from "../../../services/getProducts";
-const useProduct = () => {
-    const [products, setProducts] = useState<ProductModel[] | undefined>(undefined);
-    const [error, setError] = useState<string| null>(null);
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../redux/store";
+import fetchProducts from "../../../redux/productsAsyncThunk";
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
+const useProducts = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { items, status, error } = useSelector((state: RootState) => state.products);
 
-    const fetchProducts = async () => {
-        try {
-            const data = await getProducts();
-            setProducts(data);
-        } catch (error) {
-            if (error instanceof Error) {
-                setError(`Something went wrong: ${error.message}`);
-            }
-        }
-    };
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
 
-    return { products, error };
-}
+  return { items, status, error };
+};
 
-export default useProduct;
+export default useProducts;

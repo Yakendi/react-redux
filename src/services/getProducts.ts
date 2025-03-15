@@ -1,19 +1,20 @@
 import axios from "axios";
 import { ProductModel } from "../model/ProductModel";
 
-export const BASE_URL = 'https://fakestoreapi.com/products';
+export const BASE_URL = 'https://fakestoreapi.com';
 
-const getProducts = async () => {
-    try {
-        const response = await axios.get<ProductModel[]>(BASE_URL);
-        return response.data;
-    } catch (error) {
-        if (axios.isAxiosError(error)) {
-            throw new Error(error.message);
-        } else if (error instanceof Error) {
-            throw error;
-        }
-    }
-}
+const api = axios.create({
+    baseURL: BASE_URL,
+});
+
+api.interceptors.response.use(
+    (response) => response,
+    (error) => Promise.reject(error.response?.data?.message)
+)
+
+export const getProducts = async (): Promise<ProductModel[]> => {
+    const response = await api.get<ProductModel[]>("/products");
+    return response.data;
+  };
 
 export default getProducts;

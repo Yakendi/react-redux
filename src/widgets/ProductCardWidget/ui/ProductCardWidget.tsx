@@ -6,24 +6,15 @@ import { LoadingSpinner } from "../../../entities/LoadingSpinnerEntity";
 import { CreateProductButton } from "../../../shared/CreateProductButton";
 
 const ProductCardWidget = () => {
-    const { products, error } = useProducts();
-		
-    if (error) {
-        return (
-            <ErrorContainer errorText={error} />
-        )
-    }
+    const { items, status, error } = useProducts();
 
-    if (!products) {
-        return (
-            <LoadingSpinner />
-        )
-    }
+    if (status === "loading") return <LoadingSpinner />;
+    if (error) return <ErrorContainer errorText={error} />;
 
     return (
         <SProductCardWidget>
-            {products.map((product) => (
-                <ProductCardListEntity key={product.id} product={product} />
+            {items?.map((item) => (
+                <ProductCardListEntity key={item.id} product={item} />
             ))}
             <CreateProductButton />
         </SProductCardWidget>
