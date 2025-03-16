@@ -2,14 +2,27 @@ import SProductCardListEntity from "./styles/SProductCardListEntity.styled";
 import { ProductImageWrapper } from "../../ProductImageWrapper"
 import { ProductInfoWrapper } from "../../ProductInfoWrapper";
 import { ProductPriceWrapper } from "../../ProductPriceWrapper";
-import { ProductCardInterface } from "../../../model/ProductModel";
+import { ProductModel } from "../../../model/ProductModel";
 
-const ProductCardListEntity = ({ product }: ProductCardInterface) => {
+interface ProductCardListInterface {
+    product: ProductModel & {shortDescription: string};
+    isExpanded: boolean;
+    toggleExpanded: (id: number) => void;
+}
+
+const ProductCardListEntity = ({ product, isExpanded, toggleExpanded }: ProductCardListInterface) => {
+    
     return (
         <SProductCardListEntity>
-            <ProductImageWrapper src={product.image} alt={product.title}/>
-            <ProductInfoWrapper title={product.title} description={product.description}/>
-            <ProductPriceWrapper price={product.price}/>
+            <ProductImageWrapper src={product.image} alt={product.title} />
+            <ProductInfoWrapper 
+                title={product.title} 
+                description={isExpanded ? product.description : product.shortDescription}
+                product={product}
+                isExpanded={isExpanded}
+                toggleExpanded={toggleExpanded}
+            />
+            <ProductPriceWrapper price={product.price} />
         </SProductCardListEntity>
     );
 };

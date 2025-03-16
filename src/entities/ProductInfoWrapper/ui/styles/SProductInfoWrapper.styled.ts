@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-const SProductInfo = styled.div`
+const SProductInfoWrapper = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    align-items: start;
 `;
 
-export default SProductInfo;
+export default SProductInfoWrapper;

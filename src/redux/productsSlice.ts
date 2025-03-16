@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import fetchProducts from "./productsAsyncThunk";
 
 interface ProductsState {
-    items: ProductModel[] | undefined;
+    items: ProductModel[];
     status: "idle" | "loading" | "succeeded" | "failed";
     error: string | null;
   }
