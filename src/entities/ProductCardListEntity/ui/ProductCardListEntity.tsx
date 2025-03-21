@@ -14,7 +14,7 @@ const ProductCardListEntity = ({ product, isExpanded, toggleExpanded }: ProductC
     
     return (
         <SProductCardListEntity>
-            <ProductImageWrapper src={product.image} alt={product.title} />
+            <ProductImageWrapper src={product.image ? product.image : "/images/placeholder.jpg"} alt={product.title} />
             <ProductInfoWrapper 
                 title={product.title} 
                 description={isExpanded ? product.description : product.shortDescription}

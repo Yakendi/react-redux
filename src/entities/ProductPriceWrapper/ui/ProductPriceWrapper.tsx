@@ -6,7 +6,7 @@ import { ProductPriceInterface } from "../../../shared/ProductPrice/ui/ProductPr
 const ProductPriceWrapper = ({ price }: ProductPriceInterface) => {
     return (
         <SProductPriceWrapper>
-            <ProductPrice price={`${price}$`} />
+            <ProductPrice price={price ? `${price}$`: "n/a"} />
         </SProductPriceWrapper>
     )
 }

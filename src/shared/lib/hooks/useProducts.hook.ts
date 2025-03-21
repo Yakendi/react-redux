@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../../redux/store";
-import fetchProducts from "../../../redux/productsAsyncThunk";
+import fetchProducts from "../../../redux/getProducts/productsAsyncThunk";
 
 const useProducts = () => {
   const dispatch = useDispatch<AppDispatch>();

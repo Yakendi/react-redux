@@ -1,6 +1,7 @@
-import { ProductModel } from "../model/ProductModel";
+import { ProductModel } from "../../model/ProductModel";
 import { createSlice } from "@reduxjs/toolkit";
 import fetchProducts from "./productsAsyncThunk";
+import createProductThunk from "../createProduct/createProductAsyncThunk";
 
 interface ProductsState {
     items: ProductModel[];
@@ -28,6 +29,17 @@ const productsSlice = createSlice({
           state.items = action.payload;
         })
         .addCase(fetchProducts.rejected, (state, action) => {
+          state.status = "failed";
+          state.error = action.payload ?? `Something went wrong: ${action.error.message}`;
+        })
+        .addCase(createProductThunk.pending, (state) => {
+          state.status = "loading";
+        })
+        .addCase(createProductThunk.fulfilled, (state, action) => {
+          state.status = "succeeded";
+          state.items.unshift(action.payload);
+        })
+        .addCase(createProductThunk.rejected, (state, action) => {
           state.status = "failed";
           state.error = action.payload ?? `Something went wrong: ${action.error.message}`;
         });

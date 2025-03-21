@@ -1,8 +1,8 @@
 import SCreateProductButton from "./styles/SCreateProductButton.styled"
 
-const CreateProductButton = () => {
+const CreateProductButton = ({onClick}: {onClick: () => void}) => {
     return (
-        <SCreateProductButton />
+        <SCreateProductButton onClick={onClick}/>
     )
 };
 

@@ -17,7 +17,7 @@ const ProductInfoWrapper = ({ title, description, product, isExpanded, toggleExp
             <ProductDescription description={description} />
             {product.description.length > 150 && (
                 <button style={{ backgroundColor: "lightGray", padding: "6px", borderRadius: "4px", fontSize: "12px" }} onClick={() => toggleExpanded(product.id)}>
-                    {isExpanded ? "Hide Details" : "Show Details"}
+                    {isExpanded ? "Show Less" : "Show More"}
                 </button>
             )}
         </SProductInfoWrapper>
