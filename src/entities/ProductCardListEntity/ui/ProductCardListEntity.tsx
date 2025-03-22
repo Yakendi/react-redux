@@ -5,15 +5,16 @@ import { ProductPriceWrapper } from "../../ProductPriceWrapper";
 import { ProductModel } from "../../../model/ProductModel";
 
 interface ProductCardListInterface {
+    onClick: () => void;
     product: ProductModel & {shortDescription: string};
     isExpanded: boolean;
     toggleExpanded: (id: number) => void;
 }
 
-const ProductCardListEntity = ({ product, isExpanded, toggleExpanded }: ProductCardListInterface) => {
-    
+const ProductCardListEntity = ({ onClick, product, isExpanded, toggleExpanded }: ProductCardListInterface) => {
+    console.log(1)
     return (
-        <SProductCardListEntity>
+        <SProductCardListEntity onClick={onClick}>
             <ProductImageWrapper src={product.image ? product.image : "/images/placeholder.jpg"} alt={product.title} />
             <ProductInfoWrapper 
                 title={product.title} 

@@ -30,9 +30,14 @@ const getProducts = async (): Promise<ProductModel[]> => {
   return response.data;
 };
 
+const getSingleProductByID = async (id: number): Promise<ProductModel> => {
+  const response = await api.get<ProductModel>(`/products/${id}`);
+  return response.data;
+};
+
 const createProduct = async (product: Partial<ProductModel>) => {
   const response = await api.post<ProductModel>("/products", product);
   return response.data;
 };
 
-export { getProducts, createProduct };
+export { getProducts, getSingleProductByID, createProduct };

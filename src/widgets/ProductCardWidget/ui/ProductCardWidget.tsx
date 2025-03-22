@@ -5,24 +5,18 @@ import { ErrorContainer } from "../../../entities/ErrorContainerEntity";
 import { LoadingSpinner } from "../../../entities/LoadingSpinnerEntity";
 import { CreateProductButton } from "../../../shared/CreateProductButton";
 import { Modal } from "../../../entities/Modal";
-import useProducts from "../../../shared/lib/hooks/useProducts.hook";
+import useProducts from "../../../shared/lib/hooks/useProducts";
 import useSubmit from "../../../features/useSubmit";
+import useForm from "../../../features/useForm";
+import useModal from "../../../features/useModal";
+import { getSingleProductByID } from "../../../services/getProducts";
 
 const ProductCardWidget = () => {
   const { items, status, error } = useProducts();
-  const { modifiedItems, expandedItems, toggleExpanded } =
-    useDescription(items);
-  const {
-    title,
-    description,
-    handleSubmit,
-    onChangeTitle,
-    onChangeDescription,
-    titleError,
-    isActive,
-    showModal,
-    hideModal,
-  } = useSubmit();
+  const { modifiedItems, expandedItems, toggleExpanded } = useDescription(items);
+  const { title, description, validate, resetForm, titleError, onChangeTitle, onChangeDescription } = useForm();
+  const { isActive, showModal, hideModal } = useModal();
+  const { handleSubmit, closeModal} = useSubmit({ title, description, validate, resetForm, hideModal});
 
   if (status === "loading") return <LoadingSpinner />;
   if (error) return <ErrorContainer errorText={error} />;
@@ -32,6 +26,7 @@ const ProductCardWidget = () => {
       {modifiedItems.map((item) => (
         <ProductCardListEntity
           key={item.id}
+          onClick={() => getSingleProductByID(item.id)}
           product={item}
           isExpanded={expandedItems[item.id] || false}
           toggleExpanded={toggleExpanded}
@@ -42,7 +37,7 @@ const ProductCardWidget = () => {
         hidden={isActive}
         titleValue={title}
         descriptionValue={description}
-        onClose={hideModal}
+        onClose={closeModal}
         onSubmit={handleSubmit}
         onChangeTitle={onChangeTitle}
         onChangeDescription={onChangeDescription}

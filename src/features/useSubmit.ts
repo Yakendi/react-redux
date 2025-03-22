@@ -1,15 +1,19 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../redux/store";
 import createProductThunk from "../redux/createProduct/createProductAsyncThunk";
-import useForm from "./useForm";
-import useModal from "./useModal";
 
-const useSubmit = () => {
+interface UseSubmitInterface {
+  title: string;
+  description: string;
+  validate: () => boolean;
+  resetForm: () => void;
+  hideModal: () => void;
+}
+
+const useSubmit = ({title, description, validate, resetForm, hideModal}: UseSubmitInterface) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { title, description, titleError, onChangeTitle, onChangeDescription, validate, resetForm } = useForm();
-  const { isActive, showModal, hideModal: closeModal } = useModal();
 
-  const hideModal = () => {
+  const closeModal = () => {
     resetForm();
     closeModal();
   };
@@ -25,17 +29,7 @@ const useSubmit = () => {
     hideModal();
   };
 
-  return {
-    title,
-    description,
-    titleError,
-    onChangeTitle,
-    onChangeDescription,
-    handleSubmit,
-    isActive,
-    showModal,
-    hideModal,
-  };
+  return { handleSubmit, closeModal };
 };
 
 export default useSubmit;

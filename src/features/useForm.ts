@@ -7,7 +7,7 @@ const useForm = () => {
 
   const onChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
-    setTitleError(""); // Убираем ошибку при вводе
+    setTitleError("");
   };
 
   const onChangeDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
