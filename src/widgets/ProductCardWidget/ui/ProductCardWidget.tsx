@@ -4,45 +4,41 @@ import { useDescription } from "../../../features/useDescription";
 import { ErrorContainer } from "../../../entities/ErrorContainerEntity";
 import { LoadingSpinner } from "../../../entities/LoadingSpinnerEntity";
 import { CreateProductButton } from "../../../shared/CreateProductButton";
-import { Modal } from "../../../entities/Modal";
 import useProducts from "../../../shared/lib/hooks/useProducts";
-import useSubmit from "../../../features/useSubmit";
-import useForm from "../../../features/useForm";
-import useModal from "../../../features/useModal";
 import { getSingleProductByID } from "../../../services/getProducts";
+import { ModalWidget } from "../../ModalWidget";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../redux/store";
+import { showModal } from "../../../redux/modal/createModalSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
+
 
 const ProductCardWidget = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { isOpen } = useSelector((state: RootState) => state.modal);
   const { items, status, error } = useProducts();
   const { modifiedItems, expandedItems, toggleExpanded } = useDescription(items);
-  const { title, description, validate, resetForm, titleError, onChangeTitle, onChangeDescription } = useForm();
-  const { isActive, showModal, hideModal } = useModal();
-  const { handleSubmit, closeModal} = useSubmit({ title, description, validate, resetForm, hideModal});
 
   if (status === "loading") return <LoadingSpinner />;
   if (error) return <ErrorContainer errorText={error} />;
+  
+  const renderProductList = () =>
+    modifiedItems.map((item) => (
+      <ProductCardListEntity
+        key={item.id}
+        onClick={() => getSingleProductByID(item.id)}
+        product={item}
+        isExpanded={expandedItems[item.id] || false}
+        toggleExpanded={toggleExpanded}
+      />
+    ));
 
   return (
     <SProductCardWidget>
-      {modifiedItems.map((item) => (
-        <ProductCardListEntity
-          key={item.id}
-          onClick={() => getSingleProductByID(item.id)}
-          product={item}
-          isExpanded={expandedItems[item.id] || false}
-          toggleExpanded={toggleExpanded}
-        />
-      ))}
-      <CreateProductButton onClick={showModal} />
-      <Modal
-        hidden={isActive}
-        titleValue={title}
-        descriptionValue={description}
-        onClose={closeModal}
-        onSubmit={handleSubmit}
-        onChangeTitle={onChangeTitle}
-        onChangeDescription={onChangeDescription}
-        error={titleError}
-      />
+      {renderProductList()}
+      <CreateProductButton onClick={() => dispatch(showModal("showModal"))} />
+      {isOpen && <ModalWidget />}
     </SProductCardWidget>
   );
 };
