@@ -1,10 +1,10 @@
 import SApp from "../assets/styles/app.styles";
-import { ProductsPage } from "../pages";
+import { AppRouter } from "../routes/routes";
 
 function App() {
   return (
     <SApp>
-      <ProductsPage />
+      <AppRouter />
     </SApp>
   );
 }

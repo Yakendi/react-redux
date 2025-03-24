@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import productsReducer from "./getProducts/productsSlice";
+import singleProductReducer from "./getSingleProduct/singleProductSlice";
 import modalReducer from "./modal/createModalSlice";
 
 const store = configureStore({
     reducer: {
         products: productsReducer,
-        modal: modalReducer
+        singleProduct: singleProductReducer,
+        modal: modalReducer,
     },
 });
 
